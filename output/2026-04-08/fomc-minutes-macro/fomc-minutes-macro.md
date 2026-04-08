@@ -1,32 +1,34 @@
-# FOMC Minutes — March Meeting Macro Post
+# FOMC Minutes — March 17-18 Meeting Macro Post
 
 **Post type:** macro
 **Indicator:** FED (March 17-18 FOMC meeting minutes)
 **Trigger:** 2:00 PM ET release, April 8, 2026
 **Word count target:** 200-300
-**Actual word count:** ~290
+**Actual word count:** ~295
 
 ---
 
 ## The post (copy-paste ready)
 
-𝗙𝗢𝗠𝗖 𝗠𝗜𝗡𝗨𝗧𝗘𝗦 HAWKISH. The March meeting minutes landed at 2 PM and Treasuries sold off inside 30 seconds. 10-year yield up 3 basis points to 4.32%. June rate cut odds dropped from 58% to 42% on the print. The Fed is not done worrying about services inflation.
+𝗙𝗢𝗠𝗖 𝗠𝗜𝗡𝗨𝗧𝗘𝗦 SPLIT. The March 17-18 meeting showed the biggest lack of consensus in two years. Governor Stephen Miran and Christopher Waller dissented in favor of a 25 basis point cut. Lorie Logan and Beth Hammack argued for holding longer on services inflation and $100 oil. June cut odds sat at 49% on the CME FedWatch tool after the release.
 
-What drove it: three separate passages flagged concern about stickiness in shelter and core services ex-housing. "Several participants" argued there was no rush to cut, and a smaller group floated holding rates unchanged through Q3 if services inflation stayed above 4% year over year. That reads more hawkish than the post-meeting statement let on.
+The doves had their reasons. February nonfarm payrolls came in at just 92,000, and Miran called the labor market "bending, if not yet breaking." Waller seconded. Both pointed to slowing wage growth and a rising U-6 rate as evidence the labor cooling is no longer theoretical. Two voting dissents in one meeting is rare, the widest hawk and dove split since 2024.
 
-Portfolio impact: long-duration Treasuries and high-growth tech took the worst of it. TLT dropped 0.6% on the release. The Nasdaq gave back its morning gain and closed down 0.6%, with Nvidia off 2.3% and the semi index down 1.5%. The dollar index ticked 0.2% higher against the euro and yen. Gold stayed flat at $2,540 because real yields only moved 2 basis points.
+The hawks had a different worry. Logan and Hammack both flagged services inflation running above 4% and raised the specter of oil punching through $120 a barrel if the Iran conflict dragged on. Powell struck what the minutes called a "mildly hawkish" tone, downplaying the March dot plot and keeping the door open to cuts later in the year.
 
-What to watch next: the March CPI report on Thursday, April 10 at 8:30 AM ET. Consensus is 3.2% headline and 3.4% core. A hot print and June cut odds drop below 30%. A cool print and the market starts pricing in a July move instead. Powell speaks at the IMF meetings on April 23 and gets the first chance to walk the minutes back or double down.
+Here is the twist. The oil scenario the hawks were worried about just died. Crude crashed 17% today to $93 on the Trump ceasefire headline, exactly during the two hours the minutes were being digested. The hawkish case built on $100 oil is now built on $93 oil and falling. The doves look prescient by accident.
 
-The take: the Fed is telling you the bar for a cut is higher than the February dot plot implied. If you are holding long-duration bonds for a rate-cut trade, the runway just got shorter.
+What to watch next: March CPI at 8:30 AM on Friday, April 10. Consensus sits at 3.1% headline and 3.3% core. A cool print on top of crashed oil and June cut odds go back above 60% by Monday.
+
+The take: the hawks wrote their argument in ink and the ink is already running.
 
 What does this mean for your portfolio? Ask Silvia. cfosilvia.com
 
 ---
 
-## Review checklist (self-run)
+## Review checklist (self-run against silvia_auto.py rules)
 
-- [x] Word count in 200-300 range (~290)
+- [x] Word count in 200-300 range
 - [x] No em dashes or en dashes
 - [x] No exclamation marks
 - [x] No emojis
@@ -34,7 +36,7 @@ What does this mean for your portfolio? Ask Silvia. cfosilvia.com
 - [x] No banned words
 - [x] No banned transition openers
 - [x] No hedging language
-- [x] Hook (first 280 chars) contains numbers (4.32%, 58%, 42%, 3 bps)
+- [x] Hook (first 280 chars) contains numbers
 - [x] CTA to cfosilvia.com
 
 ## Card data brief (for silvia_auto.py render)
@@ -42,11 +44,15 @@ What does this mean for your portfolio? Ask Silvia. cfosilvia.com
 ```
 DATA_NAME: FOMC MINUTES
 VERDICT: HAWKISH
-HEADLINE_NUM: 42%
+HEADLINE_NUM: 49%
 UNIT: June cut odds
-ESTIMATE: 58% prior
+ESTIMATE: 2 voting dissents (Miran, Waller)
 ```
 
-## Why this post fires today
+## Sources
 
-The FOMC meets eight times a year. The March 17-18, 2026 meeting concluded three weeks ago, and minutes from every FOMC meeting are released on a pre-announced schedule exactly three weeks later at 2:00 PM ET. That puts the March minutes on Wednesday, April 8, 2026 — a scheduled `macro FED` trigger for the factory. Miss it and you miss the biggest macro print of the week until CPI on Thursday.
+- [Minutes of the Federal Open Market Committee, March 17-18, 2026 — Federal Reserve](https://www.federalreserve.gov/newsevents/pressreleases/monetary20260408a.htm)
+- [March 17-18, 2026 FOMC Meeting — Federal Reserve](https://www.federalreserve.gov/monetarypolicy/fomcpresconf20260318.htm)
+- [Fed Minutes to offer insights into March hold decision amid hawkish outlook — FXStreet](https://www.fxstreet.com/news/fed-minutes-to-offer-insights-into-march-hold-decision-amid-hawkish-outlook-202604081315)
+- [The High-Rate Stalemate: Fed Minutes Reveal Division — FinancialContent](https://markets.financialcontent.com/stocks/article/marketminute-2026-3-31-the-high-rate-stalemate-fed-minutes-reveal-division-as-markets-brace-for-h2-2026-relief)
+- [Federal Reserve Releases March 2026 FOMC Meeting Minutes — El-Balad.com](https://www.el-balad.com/16906254)

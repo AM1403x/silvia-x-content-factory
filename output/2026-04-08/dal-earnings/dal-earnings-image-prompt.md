@@ -16,11 +16,11 @@ Row 1 — the ticker block. The three letters "DAL" in ultra-bold white sans-ser
 
 Row 2 — the data blocks, positioned 44 pixels below the ticker row. Two equal data blocks side by side, separated by a thin vertical divider line (1 pixel wide, 70 pixels tall, color #222). 80 pixels of horizontal gap between blocks.
 
-Left block: header "EPS" in uppercase gray #666, size 16pt, weight 500, letter-spacing 2 pixels, centered. Below the header (10 pixel gap): on the left side "$0.45" in bright emerald green #22C55E, weight 700, size 52pt. Next to it, aligned to baseline, 14 pixels of spacing: "vs $0.39" in darker gray #555, weight 400, size 24pt.
+Left block: header "EPS" in uppercase gray #666, size 16pt, weight 500, letter-spacing 2 pixels, centered. Below the header (10 pixel gap): on the left side "$0.64" in bright emerald green #22C55E, weight 700, size 52pt. Next to it, aligned to baseline, 14 pixels of spacing: "vs $0.61" in darker gray #555, weight 400, size 24pt.
 
-Right block: header "REVENUE" in the same uppercase gray style. Below: "$14.1B" in emerald green #22C55E weight 700 size 52pt, then "vs $13.8B" in dark gray #555 size 24pt next to it.
+Right block: header "REVENUE" in the same uppercase gray style. Below: "$14.2B" in emerald green #22C55E weight 700 size 52pt, then "vs $13.94B" in dark gray #555 size 24pt next to it.
 
-Row 3 — after-hours line, 28 pixels below the data blocks, centered. Text reads: "After hours: +3.2%" where "After hours:" is muted gray #888 at 22pt, and "+3.2%" is bright emerald green #22C55E at 22pt weight 700. Small 8 pixel gap between label and value.
+Row 3 — after-hours line, 28 pixels below the data blocks, centered. Text reads: "Pre-market: +11.8%" where "Pre-market:" is muted gray #888 at 22pt, and "+11.8%" is bright emerald green #22C55E at 22pt weight 700. Small 8 pixel gap between label and value.
 
 Footer bar — absolute bottom of the card, full width, 80 pixels tall. Bar background #111. Top edge of the bar: 2 pixel solid gold border #C9A84C. Inside the bar, three elements:
 - Far left, 48 pixels from left edge: "@CFOSilvia" in gold #C9A84C, weight 600, size 15pt, letter-spacing 1.5 pixels

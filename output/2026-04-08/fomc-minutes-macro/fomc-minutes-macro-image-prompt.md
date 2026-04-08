@@ -12,16 +12,15 @@ Top right corner, 28 pixels from top and 48 pixels from right: small sans-serif 
 
 Center of the card, stacked vertically:
 
-Row 1 — headline data label. The words "FOMC MINUTES" in ultra-bold white sans-serif, 140pt total width spanning both words on one line, letter-spacing negative 6 pixels, color #FFFFFF, weight 800, centered. Give the row a generous 16 pixel gap below.
+Row 1 — headline data label. The words "FOMC MINUTES" in ultra-bold white sans-serif on one line, letter-spacing negative 5 pixels, color #FFFFFF, weight 800, size 100pt, horizontally centered. Give the row a generous 16 pixel gap below.
 
-Row 2 — verdict pill. A horizontal pill badge, centered under the FOMC MINUTES label with 16 pixels of vertical gap. Pill width roughly 220 pixels, height 56 pixels. Pill background rgba(239,68,68,0.12) (translucent red). Pill border 2 pixels solid, color #EF4444 (bright red). Pill border radius 6 pixels. Inside the pill, the word "HAWKISH" in ALL CAPS, color #EF4444, weight 700, size 20pt, letter-spacing 4 pixels, horizontally and vertically centered. Below the pill, 32 pixels of vertical gap.
+Row 2 — verdict pill. A horizontal pill badge, centered under the FOMC MINUTES label with 16 pixels of vertical gap. Pill width roughly 180 pixels, height 52 pixels. Pill background rgba(239,68,68,0.12) (translucent red). Pill border 2 pixels solid, color #EF4444 (bright red). Pill border radius 6 pixels. Inside the pill, the word "SPLIT" in ALL CAPS, color #EF4444, weight 700, size 22pt, letter-spacing 4 pixels, horizontally and vertically centered. Below the pill, 32 pixels of vertical gap.
 
-Row 3 — the headline number and context. Horizontally centered, three elements on one baseline with varied sizes:
-- "42%" in bold white #FFFFFF, size 64pt, weight 700
+Row 3 — the headline number and context. Horizontally centered, elements on one baseline:
+- "49%" in bold white #FFFFFF, size 72pt, weight 700
 - 20 pixels of gap
 - "June cut odds" in muted gray #666, size 20pt, weight 400
-- 16 pixels of gap
-- "vs 58% prior" in dark gray #555, size 28pt, weight 400
+- Below that row with 12 pixels of vertical gap, centered: "2 voting dissents: Miran + Waller" in muted gray #888, size 18pt, weight 400
 
 Footer bar — absolute bottom of the card, full width, 80 pixels tall. Bar background #111. Top edge of the bar: 2 pixel solid gold border #C9A84C. Inside the bar, three elements:
 - Far left, 48 pixels from left edge: "@CFOSilvia" in gold #C9A84C, weight 600, size 15pt, letter-spacing 1.5 pixels
@@ -31,7 +30,7 @@ Typography rules: tight tracking, editorial spacing, plenty of negative black sp
 
 Output at 1200x675 pixels, PNG-style crispness. Do not add any extra elements, borders, frames, watermarks, timestamps, or decorative flourishes beyond what is described above.
 
-Key color note for this variant: the HAWKISH pill uses red #EF4444 because hawkish minutes are bad for stocks and bonds. If the minutes were dovish, the pill would swap to green #22C55E with a translucent rgba(34,197,94,0.15) background.
+Key color note for this variant: the SPLIT pill uses red #EF4444 because the minutes read hawkish overall, which is bad for equities and bonds even though there were dovish dissenters. The "SPLIT" label captures the two dissents plus the intra-committee disagreement.
 
 ---
 
@@ -39,6 +38,6 @@ Key color note for this variant: the HAWKISH pill uses red #EF4444 because hawki
 
 - If the model adds stock chart lines or candlesticks, add: "NO charts, NO graphs, NO candlesticks, NO market data lines. Only the typographic elements described."
 - If the model softens the blacks, add: "Background must be pure jet black #0A0A0A, not charcoal or dark gray."
-- If the pill looks wrong, specify: "The HAWKISH pill is a rounded rectangle badge, not a circle or oval."
+- If the pill looks wrong, specify: "The SPLIT pill is a rounded rectangle badge, not a circle or oval."
 - If the FOMC MINUTES text wraps or breaks, add: "The words FOMC MINUTES are on a single line, not wrapped."
 - If "@CFOSilvia" renders as a real Twitter embed, add: "@CFOSilvia is plain typographic text in gold, not a social media card or avatar."
