@@ -49,6 +49,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 # Reuse env loading and card renderer from silvia_auto
 from silvia_auto import load_env, render_card, post_to_x
 from triplex.agents import (
+    ClaudeCodeModeRequired,
     ComplianceAuditor,
     DevilsAdvocate,
     EventDetector,
@@ -57,6 +58,7 @@ from triplex.agents import (
     RedTeam,
     WireScraper,
     Writer,
+    get_anthropic_client,
 )
 from triplex.reconcile import reconcile
 from triplex.review import prompt_human, save_review_package
@@ -96,19 +98,45 @@ log = logging.getLogger("triplex")
 # ── Client setup ────────────────────────────────────────────────────────────
 
 def get_client():
-    """Construct the Anthropic client."""
-    try:
-        import anthropic
-    except ImportError:
-        log.error("anthropic package not installed. Run: pip install anthropic")
-        sys.exit(1)
+    """Construct the Anthropic client, or None for Claude Code mode.
 
-    api_key = os.environ.get("ANTHROPIC_API_KEY")
-    if not api_key:
-        log.error("ANTHROPIC_API_KEY not set")
-        sys.exit(1)
+    Returns None when no API key or package is available. Callers should
+    handle None as "run agents manually in Claude Code" rather than exit.
+    """
+    return get_anthropic_client()
 
-    return anthropic.Anthropic(api_key=api_key)
+
+def _print_claude_code_runbook(date_et: str) -> None:
+    """Print a runbook the user can follow in Claude Code when no API key is set."""
+    print("\n" + "=" * 72)
+    print("  TRIPLEX — CLAUDE CODE MODE")
+    print("=" * 72)
+    print(
+        "\n  No ANTHROPIC_API_KEY found in the environment.\n"
+        "  Falling back to Claude Code manual workflow.\n"
+    )
+    print("  To run TRIPLEX for", date_et, "by hand in Claude Code:\n")
+    print("  1. Open this repo in Claude Code (claude.ai/code)")
+    print("  2. Ask Claude Code to run the Event Detector:")
+    print("       Read triplex/prompts/01_event_detector.txt")
+    print(f"       Run it against '{date_et}' using WebSearch")
+    print(f"       Save the result to verification/{date_et}/events.json")
+    print("  3. For each event, ask Claude Code to run the three scrapers:")
+    print("       Read triplex/prompts/02a_primary_scraper.txt  (primary)")
+    print("       Read triplex/prompts/02b_wire_scraper.txt     (wire)")
+    print("       Read triplex/prompts/02c_media_scraper.txt    (media)")
+    print("       Save outputs to verification/<event_id>/{primary,wire,media}.json")
+    print("  4. Run the deterministic consensus and traceability locally:")
+    print("       python silvia_triplex.py --reconcile-only --event-id <id>")
+    print("  5. Ask Claude Code to run Red Team, Writer, Compliance, Devil's Advocate:")
+    print("       Read triplex/prompts/04_red_team.txt")
+    print("       Read triplex/prompts/05_writer.txt")
+    print("       Read triplex/prompts/06_compliance.txt")
+    print("       Read triplex/prompts/08_devils_advocate.txt")
+    print("  6. Review the generated post + card image manually.")
+    print("  7. Post to @CFOSilvia by hand from x.com/compose/post")
+    print("\n  See TRIPLEX.md 'Running without API keys' for full step-by-step.")
+    print("=" * 72 + "\n")
 
 
 # ── Pipeline stages ─────────────────────────────────────────────────────────
@@ -496,10 +524,23 @@ def main():
     parser.add_argument("--event-id", default=None, help="Run a single event by id")
     parser.add_argument("--only-discover", action="store_true", help="Just list events")
     parser.add_argument("--dry-run", action="store_true", help="Skip human gate and publish")
+    parser.add_argument(
+        "--claude-code",
+        action="store_true",
+        help="Print the Claude Code runbook and exit (no API calls)",
+    )
     args = parser.parse_args()
 
     client = get_client()
     date_et = args.date or datetime.now().strftime("%Y-%m-%d")
+
+    if args.claude_code or client is None:
+        _print_claude_code_runbook(date_et)
+        if client is None:
+            log.info("No Anthropic client. Printed runbook. Exiting cleanly.")
+            return
+        if args.claude_code:
+            return
 
     log.info("=" * 72)
     log.info("TRIPLEX run starting: date=%s dry_run=%s", date_et, args.dry_run)

@@ -60,13 +60,25 @@ bash setup.sh
 
 `setup.sh` installs Python deps, grabs Chromium for Playwright, and copies `.env.example` to `.env`.
 
-Manual install:
+Manual install (minimum):
 
 ```bash
-pip install anthropic tweepy requests beautifulsoup4 playwright lxml
+pip install requests beautifulsoup4 playwright lxml
 playwright install chromium
 cp .env.example .env
 ```
+
+Optional installs if you want API-driven modes:
+
+```bash
+pip install anthropic    # only if using ANTHROPIC_API_KEY instead of Claude Code
+pip install tweepy       # only if using TWITTER_* keys instead of manual posting
+```
+
+**Both API keys are optional.** If you do not set them, the pipeline drops
+into Claude Code mode (run agent prompts by hand in claude.ai/code) and
+manual posting mode (copy/paste to x.com/compose). See [TRIPLEX.md](TRIPLEX.md)
+for the full Claude Code workflow.
 
 ## Configure
 

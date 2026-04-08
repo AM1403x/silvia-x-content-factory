@@ -12,12 +12,15 @@ Modes:
                                               #   watches for earnings, fires on macro events
 
 Setup:
-    pip install anthropic tweepy requests beautifulsoup4 playwright
+    pip install requests beautifulsoup4 playwright
     playwright install chromium
 
-    Copy .env.example to .env and fill in:
-        ANTHROPIC_API_KEY=sk-ant-...
-        TWITTER_API_KEY=...
+    Copy .env.example to .env and fill in what you actually use. ALL KEYS
+    ARE OPTIONAL. The pipeline detects what is available and falls back
+    accordingly:
+
+        ANTHROPIC_API_KEY=sk-ant-...  (optional; if missing, use Claude Code)
+        TWITTER_API_KEY=...           (optional; if missing, manual post)
         TWITTER_API_SECRET=...
         TWITTER_ACCESS_TOKEN=...
         TWITTER_ACCESS_SECRET=...
@@ -27,6 +30,17 @@ Setup:
         AUTO_POST=false          # Set to 'true' to skip human confirmation
         LOG_DIR=./silvia_logs    # Where to write logs
         CARD_TEMPLATE=./card.html  # Custom card template path
+
+Claude Code mode:
+    If you do not have an ANTHROPIC_API_KEY, use Claude Code (claude.ai/code)
+    to run the agents by hand. The prompts in triplex/prompts/*.txt are
+    designed to work either way.
+
+Manual X posting:
+    If you do not have Twitter API keys, the pipeline will still render
+    the card image and the post text to silvia_logs/. Post manually by
+    copying the post_*.txt content into an X compose box and attaching
+    the card PNG.
 """
 
 import os
@@ -308,18 +322,38 @@ def scrape_daily() -> dict:
 #  PART 2: CLAUDE API (generate post + card brief)
 # ═══════════════════════════════════════════════════════════════════
 
+class ClaudeCodeModeRequired(RuntimeError):
+    """Raised when a direct Claude API call is requested but no API key is configured.
+
+    The caller should either:
+      1. Set ANTHROPIC_API_KEY in .env and install the anthropic package, OR
+      2. Run the agent prompt by hand in Claude Code (claude.ai/code)
+         using the prompt files in triplex/prompts/*.txt
+    """
+
+
 def call_claude(system_prompt: str, user_prompt: str) -> str:
-    """Call Claude API and return the text response."""
+    """Call Claude API and return the text response.
+
+    If the anthropic package is not installed OR ANTHROPIC_API_KEY is not set,
+    this raises ClaudeCodeModeRequired with a helpful message. The caller can
+    catch it and fall back to Claude Code manual mode.
+    """
     try:
         import anthropic
     except ImportError:
-        log.error("anthropic package not installed. Run: pip install anthropic")
-        sys.exit(1)
+        raise ClaudeCodeModeRequired(
+            "anthropic package not installed. Either run 'pip install anthropic' "
+            "and set ANTHROPIC_API_KEY, or run the agent by hand in Claude Code "
+            "using the prompt files in triplex/prompts/*.txt"
+        )
 
     api_key = os.environ.get("ANTHROPIC_API_KEY")
     if not api_key:
-        log.error("ANTHROPIC_API_KEY not set in environment or .env file")
-        sys.exit(1)
+        raise ClaudeCodeModeRequired(
+            "ANTHROPIC_API_KEY not set. Either add it to .env, or run the agent "
+            "by hand in Claude Code using the prompt files in triplex/prompts/*.txt"
+        )
 
     client = anthropic.Anthropic(api_key=api_key)
     log.info("Calling Claude API...")
@@ -799,12 +833,37 @@ def print_review(result: dict):
 #  PART 5: TWITTER/X POSTING
 # ═══════════════════════════════════════════════════════════════════
 
+def _manual_post_instructions(text: str, image_path: str) -> None:
+    """Print the manual posting instructions when Twitter keys are not configured."""
+    print("\n" + "=" * 60)
+    print("  MANUAL X POSTING — Twitter API keys not configured")
+    print("=" * 60)
+    print("\n  Steps:")
+    print("   1. Copy the post text from the file below")
+    print("   2. Open https://x.com/compose/post in a browser")
+    print("   3. Paste the text into the compose box")
+    print(f"   4. Attach this image: {image_path}")
+    print("   5. Click Post")
+    print(f"\n  Post text saved: see most recent post_*.txt in {LOG_DIR}")
+    print(f"  Card image:      {image_path}")
+    print("\n  To automate posting in the future, add TWITTER_* keys to .env")
+    print("  and run `pip install tweepy`.")
+    print("=" * 60 + "\n")
+
+
 def post_to_x(text: str, image_path: str) -> str | None:
-    """Post to X with image. Returns tweet URL or None."""
+    """Post to X with image. Returns tweet URL or None.
+
+    If tweepy is not installed OR any Twitter credential is missing, falls
+    back to printing manual posting instructions and returns None. The
+    caller should treat None as "manual mode, handle it yourself" rather
+    than a hard error.
+    """
     try:
         import tweepy
     except ImportError:
-        log.error("tweepy not installed. Run: pip install tweepy")
+        log.info("tweepy not installed — falling back to manual posting mode")
+        _manual_post_instructions(text, image_path)
         return None
 
     keys = {k: os.environ.get(k) for k in [
@@ -813,7 +872,8 @@ def post_to_x(text: str, image_path: str) -> str | None:
     ]}
     if not all(keys.values()):
         missing = [k for k, v in keys.items() if not v]
-        log.error(f"Missing Twitter credentials: {', '.join(missing)}")
+        log.info(f"Missing Twitter credentials: {', '.join(missing)} — manual posting mode")
+        _manual_post_instructions(text, image_path)
         return None
 
     # v1.1 for media upload

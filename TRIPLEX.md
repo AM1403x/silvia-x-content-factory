@@ -90,13 +90,16 @@ python silvia_triplex.py --only-discover
 
 # Full pipeline but skip the human gate and publish (for testing)
 python silvia_triplex.py --dry-run
+
+# Print the Claude Code runbook without calling any APIs
+python silvia_triplex.py --claude-code
 ```
 
-TRIPLEX uses the same `.env` as `silvia_auto.py`. Required:
+**All API keys are optional.** TRIPLEX auto-detects what is available:
 
 ```
-ANTHROPIC_API_KEY=sk-ant-...
-TWITTER_API_KEY=...
+ANTHROPIC_API_KEY=sk-ant-...   # optional; if missing → Claude Code mode
+TWITTER_API_KEY=...            # optional; if missing → manual posting mode
 TWITTER_API_SECRET=...
 TWITTER_ACCESS_TOKEN=...
 TWITTER_ACCESS_SECRET=...
@@ -104,6 +107,113 @@ TWITTER_BEARER_TOKEN=...
 ```
 
 There is no `AUTO_POST` in TRIPLEX. Every publish requires a human typing POST at the gate.
+
+## Running without API keys (Claude Code mode)
+
+If you do not want to pay for an Anthropic API key (or Twitter API access), TRIPLEX still works. You run each agent by hand in Claude Code (claude.ai/code) using the prompt files in `triplex/prompts/*.txt`, then use the deterministic Python stages locally for consensus, traceability, and compliance regex.
+
+### Step-by-step for one event
+
+1. **Discover events** — Open Claude Code in the repo folder and run:
+
+   ```
+   Read triplex/prompts/01_event_detector.txt
+   Using WebSearch, find every CFO Silvia-caliber event for 2026-04-08
+   Save the JSON result to verification/2026-04-08/events.json
+   ```
+
+2. **Triple-scrape one event** — For each event, run three separate Claude Code sessions (or three sequential prompts) so each scraper forms an independent view:
+
+   ```
+   Read triplex/prompts/02a_primary_scraper.txt
+   The event is: {event JSON from step 1}
+   Use WebSearch + WebFetch on company IR, SEC, Fed.gov, BLS only
+   Save to verification/<event_id>/primary.json
+   ```
+
+   Then repeat with `02b_wire_scraper.txt` (Reuters/Bloomberg/AP only) and `02c_media_scraper.txt` (CNBC/WSJ/Barron's/Benzinga only). Each run should only touch its allowed sources.
+
+3. **Run deterministic consensus locally** — This is pure Python, no LLM needed:
+
+   ```bash
+   python -c "
+   import json
+   from triplex.reconcile import reconcile
+   from triplex.schemas import ScraperResult, ScrapedField
+
+   def load(name):
+       data = json.load(open(f'verification/2026-04-08_dal_earnings/{name}.json'))
+       fields = {k: ScrapedField(**v) for k, v in data['fields'].items()}
+       return ScraperResult(event_id=data['event_id'], scraper_label=data['scraper_label'], fields=fields)
+
+   locked = reconcile('2026-04-08_dal_earnings', 'earnings', 'DAL',
+                      load('primary'), load('wire'), load('media'))
+   open('verification/2026-04-08_dal_earnings/locked_data.json', 'w').write(
+       json.dumps(locked.to_dict(), indent=2, default=str))
+   print('Locked. Green:', sum(1 for f in locked.fields.values() if f.confidence == 'green'))
+   "
+   ```
+
+4. **Red team, writer, compliance, devil's advocate** — Back to Claude Code, one prompt at a time:
+
+   ```
+   Read triplex/prompts/04_red_team.txt
+   The locked data is: {paste contents of verification/<event_id>/locked_data.json}
+   Use WebSearch to independently verify the critical claims
+   Return the JSON report per the prompt spec
+   Save to verification/<event_id>/red_team.json
+   ```
+
+   Same pattern for `05_writer.txt`, `06_compliance.txt`, `08_devils_advocate.txt`.
+
+5. **Deterministic traceability scan** — local Python again:
+
+   ```bash
+   python -c "
+   import json
+   from triplex.traceability import audit, deterministic_compliance_scan
+   from triplex.schemas import LockedData, LockedField
+
+   ld_json = json.load(open('verification/2026-04-08_dal_earnings/locked_data.json'))
+   fields = {k: LockedField(**v) for k, v in ld_json['fields'].items()}
+   locked = LockedData(event_id=ld_json['event_id'], event_type=ld_json['event_type'],
+                       identifier=ld_json['identifier'], fields=fields,
+                       unresolved_fields=ld_json['unresolved_fields'])
+   post = open('verification/2026-04-08_dal_earnings/post.txt').read()
+   print('Compliance:', deterministic_compliance_scan(post, 'earnings'))
+   print('Traceability:', audit('2026-04-08_dal_earnings', post, locked).overall_status)
+   "
+   ```
+
+6. **Render the card PNG** — use the existing Playwright helper:
+
+   ```bash
+   python -c "
+   from silvia_auto import render_card
+   brief = {'TICKER': 'DAL', 'VERDICT': 'BEAT', 'EPS_ACTUAL': '\$0.64',
+            'EPS_EST': '\$0.61', 'REV_ACTUAL': '\$14.2B', 'REV_EST': '\$13.94B',
+            'AH_MOVE': '+11.8%', 'QUARTER': 'Q1 FY2026'}
+   render_card('earnings', brief, 'silvia_logs/card_dal.png')
+   "
+   ```
+
+7. **Generate the Calvin & Hobbes illustration** — copy the prompt from `output/<date>/<event>/<event>-ch-image-prompt.md` into ChatGPT-4o image generation or DALL-E 3. Save the result.
+
+8. **Post manually** — open https://x.com/compose/post, paste the post text from `verification/<event_id>/post.txt`, attach the Calvin & Hobbes image (or the Playwright card, whichever you prefer), and click Post.
+
+### Shortcut: TRIPLEX runbook auto-print
+
+Running `python silvia_triplex.py --claude-code` or running it with no `ANTHROPIC_API_KEY` prints a condensed version of this runbook for the current date. Use it as a prompt for Claude Code.
+
+## Image generation modes
+
+Each post supports two image styles:
+
+1. **Institutional Bloomberg-style card** (`<event>-image-prompt.md`) — rendered automatically by Playwright from the card brief, or manually via ChatGPT from the prompt. 1200x675 PNG, jet black background, gold accent bar.
+
+2. **Calvin & Hobbes illustration** (`<event>-ch-image-prompt.md`) — generated manually via ChatGPT-4o image / DALL-E 3 / Midjourney. Hand-drawn watercolor style, recurring character, scene-specific props and mood. See `triplex/prompts/ch_image_style_guide.md` for the shared style spec.
+
+The Calvin & Hobbes illustrations are the default @CFOSilvia voice for posts. The institutional card is a fallback for days when the illustration cannot be generated in time.
 
 ## What the human sees at the gate
 

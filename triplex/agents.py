@@ -9,6 +9,15 @@ Each agent is a thin class that:
 The Anthropic web_search tool is used for agents that need live sources
 (event detector, three scrapers, red team). Writer and compliance agents
 are pure LLM calls with no tool use.
+
+Claude Code fallback mode:
+  If the anthropic package is not installed OR ANTHROPIC_API_KEY is not
+  configured, these classes can still be imported and instantiated. Any
+  .run() call will raise ClaudeCodeModeRequired with instructions for
+  running the agent manually in Claude Code.
+
+  This lets the deterministic parts of the pipeline (consensus, traceability,
+  compliance regex) still work even without Anthropic API access.
 """
 
 from __future__ import annotations
@@ -31,6 +40,19 @@ from .schemas import (
 )
 
 log = logging.getLogger("triplex.agents")
+
+
+class ClaudeCodeModeRequired(RuntimeError):
+    """Raised when an agent is invoked but no Anthropic API access is configured.
+
+    When this is raised, the caller should either:
+      1. Install anthropic (`pip install anthropic`) and set ANTHROPIC_API_KEY
+      2. Run the agent's prompt manually in Claude Code (claude.ai/code)
+         using the matching file in triplex/prompts/*.txt
+
+    The pipeline's deterministic stages (consensus, traceability, regex
+    compliance) still work without this.
+    """
 
 # ── Model selection ─────────────────────────────────────────────────────────
 # The user's stated preference: accuracy over cost. Opus 4.6 on the
@@ -70,7 +92,18 @@ def _call_claude(
     max_tokens: int = 4000,
     use_web_search: bool = False,
 ) -> str:
-    """Single Claude API call with optional web search tool."""
+    """Single Claude API call with optional web search tool.
+
+    If `client` is None, raises ClaudeCodeModeRequired. The orchestrator
+    catches this and falls back to printing a manual-mode instruction
+    sheet for Claude Code users.
+    """
+    if client is None:
+        raise ClaudeCodeModeRequired(
+            "No Anthropic client available. Run this agent's prompt manually "
+            "in Claude Code. The system prompt is in triplex/prompts/ and the "
+            "user prompt should be the JSON payload this stage would have sent."
+        )
 
     kwargs: dict[str, Any] = {
         "model": model,
@@ -102,6 +135,27 @@ def _call_claude(
             f"Claude returned no text (model={model}, blocks={[b.type for b in response.content]})"
         )
     return text
+
+
+def get_anthropic_client():
+    """Construct an Anthropic client, or return None if not configured.
+
+    Returns None (not raises) when:
+      - anthropic package is not installed
+      - ANTHROPIC_API_KEY is not set
+
+    Callers should treat None as "Claude Code mode — run agent prompts manually".
+    """
+    try:
+        import anthropic
+    except ImportError:
+        log.info("anthropic package not installed — Claude Code mode")
+        return None
+    api_key = os.environ.get("ANTHROPIC_API_KEY")
+    if not api_key:
+        log.info("ANTHROPIC_API_KEY not set — Claude Code mode")
+        return None
+    return anthropic.Anthropic(api_key=api_key)
 
 
 def _parse_json(text: str) -> Any:

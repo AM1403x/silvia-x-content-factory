@@ -2,6 +2,21 @@
 
 Instructions for Claude Code (and any LLM collaborator) working on this repo.
 
+## API keys are optional
+
+Both ANTHROPIC_API_KEY and TWITTER_* keys are OPTIONAL. The pipeline detects
+what is available:
+
+- **No ANTHROPIC_API_KEY**: use Claude Code manual mode. Run each agent
+  prompt from `triplex/prompts/*.txt` by hand in Claude Code, save the
+  outputs to `verification/<event_id>/`, then run the deterministic
+  Python stages (consensus, traceability, compliance regex) locally.
+- **No TWITTER_\***: the pipeline still renders the card PNG and writes
+  the post text to a file. Post manually by copying the text into
+  https://x.com/compose/post and attaching the PNG.
+
+See `TRIPLEX.md` section "Running without API keys" for the full step-by-step.
+
 ## What this repo is
 
 A single-file Python pipeline (`silvia_auto.py`) that produces X posts for [@CFOSilvia](https://x.com/CFOSilvia). Three post types: earnings, macro, daily wrap. Every run scrapes its own data, writes with Claude, renders an image card, QA-reviews the post, and publishes to X.
