@@ -4,7 +4,7 @@
 **Ticker:** DAL (Delta Air Lines)
 **Trigger:** pre-market, April 8, 2026
 **Word count target:** 200-300
-**Actual word count:** ~290
+**Actual word count:** ~285
 
 ---
 
@@ -14,9 +14,9 @@
 
 Three things that mattered.
 
-1. Premium ticket revenue grew 14% year over year, continuing the pattern Delta has been hammering for two years. Main cabin was flat. The gap between front cabin and back cabin is the entire bull case, and this quarter did nothing to narrow it.
+1. Premium ticket revenue grew 14% to $5.4B even as total capacity fell 3%. Delta kept tilting toward higher-margin premium seats, and the mix is the entire bull case. Q1 did nothing to narrow the front-vs-back cabin gap.
 
-2. Revenue rose more than 9% to $14.2B, above the Street at $13.94B, driven by international strength. Delta gets roughly half its premium revenue from transatlantic routes, and summer bookings continue to run ahead of 2025.
+2. Revenue rose 9%+ to $14.2B, above the Street at $13.94B. American Express remuneration grew 10% to more than $2B, a signal that co-branded card spending held up even through the fuel spike.
 
 3. Fuel was the war wound. Jet fuel prices jumped 88% between February 27 and April 6 as the Iran conflict shut the Strait of Hormuz. Delta flagged $2B in incremental Q2 fuel costs and CEO Ed Bastian said Delta will "meaningfully reduce" its capacity growth plans. Today's ceasefire announcement is the reason the stock is celebrating, not just the beat.
 
@@ -56,12 +56,29 @@ AH_MOVE: +11.8%
 QUARTER: Q1 FY2026
 ```
 
+## Verified facts
+
+- **Adjusted EPS:** $0.64 vs $0.61 est (beat by $0.03)
+- **Revenue:** $14.2B vs $13.94B est (beat), up more than 9% YoY
+- **Premium ticket revenue:** +14% YoY to $5.4B
+- **Q1 capacity:** down 3% YoY (fleet renewal toward higher-margin premium)
+- **American Express remuneration:** +10% to more than $2B
+- **Q2 adjusted EPS guidance:** $1.00 to $1.50 (Street: $1.41)
+- **Q2 revenue guidance:** "low teens" growth (Street: ~10%)
+- **Q2 pretax profit guidance:** $1B including $300M refinery benefit
+- **Q2 fuel cost hit:** $2B flagged by management
+- **Jet fuel price move:** +88% from February 27 to April 6 (Iran conflict / Strait of Hormuz)
+- **CEO Ed Bastian quote:** "meaningfully reduce" capacity growth plans
+- **Stock reaction:** opened +8% pre-market, touched +13% pre-market, closed session around +11.8%
+
 ## Sources
 
-- [Delta Air Lines Q1 2026 earnings coverage — CNBC](https://www.cnbc.com/2026/04/08/delta-air-lines-q1-2026-earnings.html)
-- [DAL Q1 2026 release — Delta News Hub](https://news.delta.com/delta-air-lines-announces-march-quarter-2026-financial-results)
+- [Delta Air Lines Q1 2026 earnings — CNBC](https://www.cnbc.com/2026/04/08/delta-air-lines-q1-2026-earnings.html)
+- [Delta Q1 2026 earnings hit record as fuel costs rise — Quartz](https://qz.com/delta-air-lines-q1-2026-earnings-fuel-costs-040826)
 - [Delta exceeds Q1 CY2026 expectations, stock jumps 11.8% — FinancialContent](https://markets.financialcontent.com/stocks/article/stockstory-2026-4-8-delta-nysedal-exceeds-q1-cy2026-expectations-stock-jumps-118)
-- [Delta Q1 2026 — GuruFocus](https://www.gurufocus.com/news/8780361/delta-air-lines-dal-q1-2026-earnings-adjusted-eps-064-miss-vs-065-est-adjusted-revenue-142b-beat-vs-1394b-est)
-- [Delta CEO says demand strong but fuel surge clouds outlook — Benzinga](https://www.benzinga.com/markets/earnings/26/04/51705692/delta-ceo-says-demand-is-strong-but-fuel-surge-clouds-outlook)
+- [Delta Q1 2026 earnings call highlights — GuruFocus](https://www.gurufocus.com/news/8782436/delta-air-lines-inc-dal-q1-2026-earnings-call-highlights-record-revenue-amid-fuel-price-challenges)
+- [Delta stock takes off on Q1 earnings as fuel costs soar to $2.6B — Yahoo](https://finance.yahoo.com/video/delta-stock-takes-off-on-q1-earnings-as-fuel-costs-soar-to-26b-134336188.html)
+- [Delta beats Q1, what does the Iran ceasefire mean — Benzinga](https://www.benzinga.com/markets/prediction-markets/26/04/51707676/delta-beats-q1-earnings-what-does-the-iran-ceasefire-mean-for-dal)
 - [Delta $2B Iran fuel hit — MSN / Barron's](https://www.msn.com/en-us/money/topstocks/delta-air-lines-stock-surges-after-earnings-how-it-s-shrugging-off-2-billion-fuel-hit/ar-AA20ok0o)
 - [Delta Q2 2026 guidance — MarketScreener](https://www.marketscreener.com/news/delta-air-lines-inc-provides-financial-guidance-for-the-second-quarter-of-2026-ce7e50dad08ff121)
+- [Delta announces March quarter 2026 results — Delta News Hub](https://news.delta.com/delta-air-lines-announces-march-quarter-2026-financial-results)
