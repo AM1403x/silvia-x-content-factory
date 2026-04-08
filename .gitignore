@@ -53,3 +53,7 @@ post_*.txt
 review_*.json
 post_history.json
 temp_card.html
+
+# TRIPLEX verification audit trail (per-event data)
+# Uncomment the next line if you don't want to commit the audit trail
+# verification/

@@ -15,6 +15,17 @@ You run one command. The pipeline:
 5. **Confirms** (or skips confirmation if `AUTO_POST=true`) and posts to X via Tweepy.
 6. **Logs** the post text, card, review score, and final URL.
 
+## Two pipelines
+
+This repo ships two separate pipelines for two different trust levels:
+
+| Pipeline | Use when | Entry point | Docs |
+|---|---|---|---|
+| **silvia_auto** | Experimentation, throwaway drafts, single-source scraping is good enough | `python silvia_auto.py ...` | This README |
+| **TRIPLEX** | Every live post on @CFOSilvia — triple-source verification, adversarial red team, sentence-level traceability, mandatory human gate | `python silvia_triplex.py ...` | [TRIPLEX.md](TRIPLEX.md) |
+
+Default to TRIPLEX for anything that ships publicly. silvia_auto is kept for experimentation and as a reference implementation.
+
 ## Post types
 
 | Mode | Command | What it posts | Words |
