@@ -10,7 +10,7 @@
 
 ## The post (copy-paste ready)
 
-𝗦𝗧𝗭 Q4 BEAT, GUIDE CUT. Comparable EPS $1.90 vs $1.71 est. Revenue $1.92B vs $1.86B est. Reported EPS $1.16 under GAAP. Stock fell 2% to $147.26 after hours on an FY27 forecast of $11.20 to $11.90 against a $12.37 Street number. Beer wins, guidance loses.
+𝗦𝗧𝗭 (Constellation Brands) Q4 BEAT, GUIDE CUT. Comparable EPS $1.90 vs $1.71 est. Revenue $1.92B vs $1.86B est. Reported EPS $1.16 under GAAP. Stock fell 2% to $147.26 after hours on an FY27 forecast of $11.20 to $11.90 against a $12.37 Street number. Beer wins, guidance loses.
 
 Three things that mattered.
 

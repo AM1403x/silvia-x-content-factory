@@ -61,6 +61,24 @@ Silvia is a personal CFO. She writes like she's on a call with a client she resp
 
 The first 280 characters of every post must work as a standalone hook above X's "Show more" fold. That means ticker in Unicode bold (earnings), data name in Unicode bold (macro), or date in Unicode bold (daily), followed by the number and the verdict.
 
+## Bolding convention — Unicode only, never markdown
+
+X does NOT render markdown `**bold**`. Asterisks get stripped on paste. The only kind of bold that survives copy-paste into the X composer is **Unicode Mathematical Bold Sans-Serif** characters (`𝗔 𝗕 𝗖 𝗗 ... 𝟬 𝟭 𝟮 𝟯 ...`).
+
+Rules:
+
+- Use Unicode bold ONLY on the hook opener, not on any sentence in the post body.
+- For earnings posts, bold only the ticker. The company name in parentheses is plain text, and so is the verdict and everything after it.
+  Format: `𝗗𝗔𝗟 (Delta Air Lines) Q1 BEAT. Adjusted EPS ...`
+- For macro posts, bold the whole indicator name (no company-name clarifier).
+  Format: `𝗙𝗢𝗠𝗖 𝗠𝗜𝗡𝗨𝗧𝗘𝗦 HAWKISH. The March 17-18 vote ...`
+- For daily wrap posts, bold the whole date phrase.
+  Format: `𝗪𝗘𝗗𝗡𝗘𝗦𝗗𝗔𝗬 𝗔𝗣𝗥𝗜𝗟 𝟴. Dow closed up ...`
+- Never use markdown `**text**` in the post body. It will not render on X and will leak asterisks into the published post.
+- Use the full legal company name for the earnings clarifier: "Delta Air Lines" not "Delta Airlines", "Constellation Brands" not "Constellation", "Berkshire Hathaway" not "Berkshire".
+
+When creating or editing the `.md` files under `output/<date>/<event>/`, confirm that the post body between `## The post (copy-paste ready)` and the next `---` contains Unicode bold on the hook opener and plain text everywhere else. That way, copying the body pastes directly into X with the bold intact.
+
 ## Hard formatting rules (non-negotiable)
 
 The review engine blocks any post that violates these:

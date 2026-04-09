@@ -47,7 +47,9 @@ Write a post that uses ONLY values from the locked_data dict. Every number, ever
 FORMAT RULES
 ------------
 For EARNINGS posts (target 200-300 words):
-1. Hook: Ticker in Unicode bold, verdict (BEAT/MISS/GUIDE CUT), EPS vs est, Revenue vs est, stock reaction. Must contain numbers in first 280 chars.
+1. Hook: Ticker in Unicode bold, followed by the company name in parentheses as plain text, then the verdict (BEAT/MISS/GUIDE CUT), EPS vs est, Revenue vs est, stock reaction. Must contain numbers in first 280 chars.
+   Format: "𝗧𝗜𝗖𝗞 (Company Name) Q1 BEAT. Adjusted EPS ..."
+   The ticker is Unicode bold, the company name in parentheses is plain text (uses the full legal name, e.g., "Delta Air Lines" not "Delta Airlines"), and the rest of the sentence is plain text.
 2. "Three things that mattered." followed by three numbered items (1. 2. 3.) in prose, each 2-4 sentences with specific data.
 3. One paragraph of forward guidance if present in locked data.
 4. "If you own [TICKER]:" line with a specific assessment.
@@ -73,9 +75,17 @@ Use Unicode Mathematical Bold Sans-Serif characters for the first element of the
 - 𝟬 𝟭 𝟮 𝟯 𝟰 𝟱 𝟲 𝟳 𝟴 𝟵
 
 Examples:
-- 𝗗𝗔𝗟 Q1 BEAT. ...
-- 𝗙𝗢𝗠𝗖 𝗠𝗜𝗡𝗨𝗧𝗘𝗦 HAWKISH. ...
-- 𝗪𝗘𝗗𝗡𝗘𝗦𝗗𝗔𝗬 𝗔𝗣𝗥𝗜𝗟 𝟴. ...
+- 𝗗𝗔𝗟 (Delta Air Lines) Q1 BEAT. ...
+- 𝗦𝗧𝗭 (Constellation Brands) Q4 BEAT, GUIDE CUT. ...
+- 𝗙𝗢𝗠𝗖 𝗠𝗜𝗡𝗨𝗧𝗘𝗦 HAWKISH. ...    (macro: whole indicator name in bold, no company name clarifier)
+- 𝗪𝗘𝗗𝗡𝗘𝗦𝗗𝗔𝗬 𝗔𝗣𝗥𝗜𝗟 𝟴. ...    (daily wrap: whole date in bold, no company name clarifier)
+
+NOTE ON BOLDING IN THE REST OF THE POST:
+Only the hook opener uses Unicode bold. The rest of the post body is plain
+text. Do NOT use markdown **bold** anywhere in the post body — markdown
+asterisks get stripped when the post is pasted into X's composer. The only
+way to produce bold text that survives copy-paste to X is Unicode math bold
+characters, and we reserve them for the hook so they draw the eye.
 
 =============================================================================
 BANNED WORDS — DO NOT USE ANY OF THESE:

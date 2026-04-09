@@ -10,7 +10,7 @@
 
 ## The post (copy-paste ready)
 
-𝗗𝗔𝗟 Q1 BEAT. Adjusted EPS $0.64 vs $0.61 est. Revenue $14.2B vs $13.94B. Stock opened 8% higher and touched +13% pre-market as the Iran ceasefire cratered oil in the same hour Delta reported. Two tailwinds at once is rare.
+𝗗𝗔𝗟 (Delta Air Lines) Q1 BEAT. Adjusted EPS $0.64 vs $0.61 est. Revenue $14.2B vs $13.94B. Stock opened 8% higher and touched +13% pre-market as the Iran ceasefire cratered oil in the same hour Delta reported. Two tailwinds at once is rare.
 
 Three things that mattered.
 
