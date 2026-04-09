@@ -1,16 +1,12 @@
-# STZ Earnings Card — Calvin & Hobbes Illustration Prompt
+# STZ Earnings — Image Prompt
 
-Paste the block below into ChatGPT-4o image generation, DALL-E 3, or Midjourney. Landscape orientation, roughly 3:2 aspect ratio.
-
-For the base style reference, see [triplex/prompts/ch_image_style_guide.md](../../../triplex/prompts/ch_image_style_guide.md).
+Attach the reference image from a prior @CFOSilvia post in ChatGPT-4o / DALL-E 3 / Midjourney so the model matches the established visual style, then paste the scene prompt below. Landscape orientation, roughly 3:2 aspect ratio.
 
 ---
 
-## Prompt
+## Scene prompt
 
-Illustrate in the style of Bill Watterson's Calvin and Hobbes. Hand-drawn ink outlines with visible pen strokes, soft watercolor fills with slight edge bleed, off-white cream paper background with a light watercolor wash texture. Flat watercolor coloring with minimal shading, just enough to give volume. No photographic realism, no digital gradients, no 3D effects, no drop shadows, no corporate logos.
-
-Scene: A young adult man in his late 20s, messy short brown hair, clean-shaven, expressive eyebrows. He wears a white long-sleeve dress shirt, a deep burgundy tie, and dark trousers. He is seated in a black office chair at his wooden desk, leaning slightly back. His expression is split and conflicted: one corner of his mouth turned up in a half-smile, the other corner pulled down in a grimace. Eyebrows slightly raised in a "yes, but..." look. Classic Watterson face for mixed feelings.
+Young adult man in his late 20s, messy short brown hair, clean-shaven, expressive eyebrows. He wears a white long-sleeve dress shirt, a deep burgundy tie, and dark trousers. He is seated in a black office chair at his wooden desk, leaning slightly back. His expression is split and conflicted: one corner of his mouth turned up in a half-smile, the other corner pulled down in a grimace. Eyebrows slightly raised in a "yes, but..." look.
 
 In his right hand, raised to about shoulder height: a clear glass beer bottle with a visible plain-script label reading "MODELO" (no real brand art, just the word). The bottle contains a pale amber beer. He is glancing at the bottle with quiet appreciation, one side of his face proud of it.
 
@@ -20,20 +16,16 @@ On the near edge of the desk: a wine glass tipped over on its side, with a small
 
 A ceramic coffee mug sits on the far side of the desk, untouched, steam curling up.
 
-Soft watercolor palette: cream paper background, white shirt, deep burgundy tie, messy brown hair, warm wooden desk, pale amber beer in the clear bottle, distinct green-and-red split on the monitor chart, deep red wine puddle, muted black office chair. Visible ink outlines throughout.
-
 Landscape aspect ratio, roughly 3:2 or 16:10. The character fills the right two-thirds of the frame, seated in the chair with the beer bottle raised in the right hand. The monitor, tipped wine glass, and coffee mug occupy the left third of the frame in a cluttered-but-warm desk arrangement.
 
-Mood: mixed feelings, split emotion. The beer franchise is winning beautifully. Everything else — the wine portfolio, the FY27 guidance — is not. The viewer should feel the character's internal conflict through his split-mouth expression alone. Dry Watterson humor about a good-but-complicated quarter.
+Mood: mixed feelings, split emotion. The beer franchise is winning beautifully. Everything else, the wine portfolio, the FY27 guidance, is not. The viewer should feel the character's internal conflict through his split-mouth expression alone. Dry humor about a good-but-complicated quarter.
 
 Hard rules:
-- No photographic realism
-- No digital gradients, no drop shadows, no 3D rendering
-- No real Modelo Especial brand art — the bottle label shows only the plain word "MODELO" in simple hand-drawn script
+- No real Modelo Especial brand art. The bottle label shows only the plain word "MODELO" in simple hand-drawn script
 - No real Constellation Brands logo
-- No text on the image except "MODELO" on the bottle, "STZ" on the monitor
-- Character must feel hand-drawn with watercolor, not vector art
-- The split-chart on the monitor must be one continuous line: green ascending on the left, clearly transitioning to red descending on the right — not two separate charts
+- No text on the image except "MODELO" on the bottle and "STZ" on the monitor
+- No photographic realism
+- The split-chart on the monitor must be one continuous line: green ascending on the left, clearly transitioning to red descending on the right, not two separate charts
 
 ---
 
@@ -46,6 +38,7 @@ Hard rules:
 
 ## Regeneration notes
 
-- If the bottle looks like a soda bottle, add: "The bottle is clearly a long-neck beer bottle, hand-drawn, with a pale amber contents."
+- If the character looks off-model, add: "Match the character in the attached reference image — same face, hair, build, and outfit silhouette."
+- If the bottle looks like a soda bottle, add: "The bottle is clearly a long-neck beer bottle, with pale amber contents."
 - If the wine glass is not recognizable, add: "The wine glass is a classic red-wine stemmed glass, tipped on its side, with a deep red-wine puddle spreading from it."
 - If the monitor shows two separate charts, add: "The monitor shows ONE continuous line chart: it rises sharply in green on the left half of the screen, then drops clearly in red on the right half, forming an inverted-V shape."

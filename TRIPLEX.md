@@ -197,23 +197,28 @@ If you do not want to pay for an Anthropic API key (or Twitter API access), TRIP
    "
    ```
 
-7. **Generate the Calvin & Hobbes illustration** — copy the prompt from `output/<date>/<event>/<event>-ch-image-prompt.md` into ChatGPT-4o image generation or DALL-E 3. Save the result.
+7. **Generate the illustration** — open ChatGPT-4o, attach a reference image from a prior @CFOSilvia post, and paste the scene prompt from `output/<date>/<event>/<event>-ch-image-prompt.md`. The reference image carries the visual style; the prompt only describes the scene. Save the result.
 
-8. **Post manually** — open https://x.com/compose/post, paste the post text from `verification/<event_id>/post.txt`, attach the Calvin & Hobbes image (or the Playwright card, whichever you prefer), and click Post.
+8. **Post manually** — open https://x.com/compose/post, paste the post text from `verification/<event_id>/post.txt`, attach the generated illustration, and click Post.
 
 ### Shortcut: TRIPLEX runbook auto-print
 
 Running `python silvia_triplex.py --claude-code` or running it with no `ANTHROPIC_API_KEY` prints a condensed version of this runbook for the current date. Use it as a prompt for Claude Code.
 
-## Image generation modes
+## Image generation
 
-Each post supports two image styles:
+Each post ships with a scene-based image prompt in `output/<date>/<event>/<event>-ch-image-prompt.md`. To generate the final image:
 
-1. **Institutional Bloomberg-style card** (`<event>-image-prompt.md`) — rendered automatically by Playwright from the card brief, or manually via ChatGPT from the prompt. 1200x675 PNG, jet black background, gold accent bar.
+1. Open ChatGPT-4o image generation (or DALL-E 3 / Midjourney).
+2. Attach a reference image from a prior @CFOSilvia post. The reference carries the visual style — same character, same aesthetic.
+3. Paste the scene prompt from the file.
+4. Generate.
 
-2. **Calvin & Hobbes illustration** (`<event>-ch-image-prompt.md`) — generated manually via ChatGPT-4o image / DALL-E 3 / Midjourney. Hand-drawn watercolor style, recurring character, scene-specific props and mood. See `triplex/prompts/ch_image_style_guide.md` for the shared style spec.
+The prompt only describes the scene content (character pose, mood, story-specific props, composition). Do not add style adjectives to the prompt — the reference image handles style.
 
-The Calvin & Hobbes illustrations are the default @CFOSilvia voice for posts. The institutional card is a fallback for days when the illustration cannot be generated in time.
+For the shared scene vocabulary (tie colors, prop library, composition rules), see `triplex/prompts/ch_image_style_guide.md`.
+
+There is also an institutional Bloomberg-style card variant (`<event>-image-prompt.md`, rendered by Playwright from the card brief) kept as a fallback, but the illustrated style is the default brand identity.
 
 ## What the human sees at the gate
 
