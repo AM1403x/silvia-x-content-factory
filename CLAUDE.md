@@ -61,6 +61,48 @@ Silvia is a personal CFO. She writes like she's on a call with a client she resp
 
 The first 280 characters of every post must work as a standalone hook above X's "Show more" fold. That means ticker in Unicode bold (earnings), data name in Unicode bold (macro), or date in Unicode bold (daily), followed by the number and the verdict.
 
+## ZERO trade action language (absolute rule)
+
+Silvia is a commentator and CFO voice, not a licensed broker. She NEVER tells the reader what to do with a position. She tells them what to WATCH, what the RISK is, and what the KEY TELL is. Prescriptive trade actions are illegal for unlicensed finance accounts and damage the brand.
+
+**Banned verbs and phrases (case-insensitive, any match = hard fail):**
+
+Direct instructions: `you should buy`, `you should sell`, `buy this stock`, `sell this stock`, `we recommend`, `I recommend`, `must buy`, `must sell`
+
+Trim / add: `trim into strength`, `trim on strength`, `trim the position`, `add on weakness`, `add into weakness`, `add to the position`
+
+Chase: `do not chase`, `don't chase`, `chase this`
+
+Take profits / cut losses: `take profits`, `take profit here`, `lock in profits`, `book the gain`, `cut losses`, `cut your losses`
+
+Scale in/out, load, dump, exit, enter: `scale in`, `scale out`, `load up`, `dump this`, `exit now`, `get out of`, `get into`, `time to buy`, `time to sell`, `time to exit`
+
+Dip / rip: `buy the dip`, `sell the rip`
+
+Size / allocation: `size up`, `size down`, `size positions accordingly`, `size your position`, `position size`
+
+Wait / avoid: `wait for entry`, `wait to buy`, `better to wait`, `avoid this stock`, `avoid the name`, `skip this one`
+
+Rotate: `rotate into`, `rotate out of`
+
+Short/long as verbs: `short it`, `long it`, `short the name`, `long the name`
+
+Position actions: `initiate a position`, `close the position`, `open a position`
+
+**The "If you own TICKER:" line is allowed**, but its job is to direct ATTENTION, never to direct ACTION.
+
+- Good: *"If you own DAL: premium is doing its job. Watch main cabin yield in the Q2 report."*
+- Good: *"If you own INTC: the real test is whether management puts dollar numbers on the Google deal on the next earnings call."*
+- **Bad (hard fail):** *"Trim into strength if you're sitting on a multi-bagger. Do not chase."*
+
+**No specific price targets** unless quoting a named analyst verbatim with attribution.
+
+**No allocation advice.** Never say "put 5% of your portfolio in X" or any variation.
+
+The full banned phrase list lives in `triplex/traceability.py` `BANNED_TRADE_ACTION_PHRASES`. The deterministic compliance scan hard-blocks any post containing any of these phrases before it can reach the human gate. The writer system prompt (`triplex/prompts/05_writer.txt`) and the compliance auditor prompt (`triplex/prompts/06_compliance.txt`) enforce the same rule at the LLM layer.
+
+If you ever need to add a new banned phrase, update all three locations: `CLAUDE.md` (this section), `05_writer.txt` (writer guidance), `06_compliance.txt` (auditor scan), and `traceability.py::BANNED_TRADE_ACTION_PHRASES` (deterministic regex enforcement).
+
 ## Bolding convention — Unicode only, never markdown
 
 X does NOT render markdown `**bold**`. Asterisks get stripped on paste. The only kind of bold that survives copy-paste into the X composer is **Unicode Mathematical Bold Sans-Serif** characters (`𝗔 𝗕 𝗖 𝗗 ... 𝟬 𝟭 𝟮 𝟯 ...`).

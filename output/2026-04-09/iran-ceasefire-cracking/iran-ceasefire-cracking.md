@@ -24,7 +24,7 @@ Market reaction: Dow -0.37%, S&P -0.16%, Nasdaq -0.18% mid-morning. Modest compa
 
 What to watch: whether Brent crosses $100 again today. If it does, the entire Wednesday rally unwinds. The March CPI print at 8:30 AM ET tomorrow is the next scheduled catalyst, and a hot print on top of a re-escalating Middle East makes the Fed's job harder by the hour.
 
-The take: a two-week ceasefire that breaks in 24 hours is not a ceasefire. Size positions accordingly.
+The take: a two-week ceasefire that breaks in 24 hours is not a ceasefire. Anyone still pricing peace into this market is pricing wrong.
 
 What does this mean for your portfolio? Ask Silvia. cfosilvia.com
 

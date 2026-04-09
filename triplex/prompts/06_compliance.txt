@@ -34,10 +34,39 @@ Scan for HEDGING PHRASES:
 "it seems", "it appears", "it remains to be seen", "only time will tell",
 "we'll have to wait and see", "time will tell"
 
-Scan for ADVICE LANGUAGE (any phrasing that sounds like buy/sell/hold):
+Scan for TRADE ACTION LANGUAGE (absolute ban — any of these phrases = FAIL):
 
+Direct instructions:
 "you should buy", "you should sell", "buy this stock", "sell this stock",
 "we recommend", "I recommend", "must buy", "must sell"
+
+Banned action verbs (case-insensitive, as instructions or imperatives):
+"trim", "trim into", "trim into strength", "trim on strength",
+"add to", "add on weakness", "add into weakness",
+"buy", "sell", "chase", "do not chase",
+"dump", "exit", "enter", "scale in", "scale out",
+"load up", "stack", "pick up",
+"take profits", "take profit", "book the gain", "lock in profits",
+"cut losses", "cut your losses",
+"size up", "size down", "size positions",
+"let it ride", "hedge it", "short it", "long it", "short the", "long the",
+"time to buy", "time to sell", "time to exit",
+"get in", "get out",
+"buy the dip", "sell the rip",
+"wait for entry", "wait to buy", "better to wait",
+"avoid this stock", "skip this one", "watch for a pullback to buy",
+"initiate a position", "close the position",
+"rotate into", "rotate out of"
+
+The "If you own TICKER:" line is allowed, but flag FAIL if the line tells
+the reader what to DO rather than what to WATCH. Look for any of the
+banned verbs immediately after "If you own TICKER:" — that is an auto-fail.
+
+ZERO SPECIFIC PRICE TARGETS unless explicitly attributed to a named
+analyst/firm as a verbatim quote. "Stock could hit $200" from Silvia
+directly = FAIL. "Morgan Stanley set a $200 target" = allowed.
+
+ZERO ALLOCATION ADVICE. "Put 5% in X" = FAIL.
 
 FORMAT CHECK
 ------------

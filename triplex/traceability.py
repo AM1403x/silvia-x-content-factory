@@ -206,6 +206,83 @@ BANNED_OPENERS = [
     "in today's", "in an era", "as we navigate",
 ]
 
+# Trade action language — ABSOLUTE BAN. Silvia never tells the reader
+# what to DO with a position, only what to WATCH or what the KEY TELL is.
+# Any of these phrases in a post body triggers an immediate compliance
+# failure. Analytical framing is encouraged, prescriptive instructions
+# are banned for regulatory + brand reasons.
+BANNED_TRADE_ACTION_PHRASES = [
+    # Direct buy/sell/hold instructions
+    "you should buy",
+    "you should sell",
+    "buy this stock",
+    "sell this stock",
+    "we recommend",
+    "i recommend",
+    "must buy",
+    "must sell",
+    # Trim / add
+    "trim into strength",
+    "trim on strength",
+    "trim the position",
+    "add on weakness",
+    "add into weakness",
+    "add to the position",
+    # Chase / do not chase
+    "do not chase",
+    "don't chase",
+    "chase this",
+    # Take profits / cut losses
+    "take profits",
+    "take profit here",
+    "lock in profits",
+    "lock in the gain",
+    "book the gain",
+    "cut losses",
+    "cut your losses",
+    # Scale in/out, load up, dump, exit, enter
+    "scale in",
+    "scale out",
+    "load up",
+    "dump this",
+    "dump the position",
+    "exit now",
+    "exit the position",
+    "get out of",
+    "get into",
+    "time to buy",
+    "time to sell",
+    "time to exit",
+    # Dip / rip
+    "buy the dip",
+    "sell the rip",
+    # Size / allocation
+    "size up",
+    "size down",
+    "size positions accordingly",
+    "size your position",
+    "position size",
+    # Wait / avoid
+    "wait for entry",
+    "wait to buy",
+    "better to wait",
+    "avoid this stock",
+    "avoid the name",
+    "skip this one",
+    # Rotate
+    "rotate into",
+    "rotate out of",
+    # Short/long as verbs (imperative)
+    "short it",
+    "long it",
+    "short the name",
+    "long the name",
+    # Position actions
+    "initiate a position",
+    "close the position",
+    "open a position",
+]
+
 
 def deterministic_compliance_scan(post_text: str, event_type: str) -> list[str]:
     """Run the same regex scans that silvia_auto.py's review_post uses.
@@ -256,6 +333,16 @@ def deterministic_compliance_scan(post_text: str, event_type: str) -> list[str]:
     found_hedges = [h for h in hedges if h in text_lower]
     if found_hedges:
         violations.append(f"Hedging: {', '.join(found_hedges)}")
+
+    # Trade action language — absolute ban. Silvia never tells the reader
+    # what to DO with a position. Any match here is an immediate failure.
+    found_trade_actions = [p for p in BANNED_TRADE_ACTION_PHRASES if p in text_lower]
+    if found_trade_actions:
+        violations.append(
+            f"BANNED TRADE ACTION LANGUAGE: {', '.join(found_trade_actions)}. "
+            "Silvia analyzes, she does not instruct. Rewrite as 'what to watch' "
+            "or 'what the tell is', never 'what to do'."
+        )
 
     # Required CTA
     if "cfosilvia.com" not in text_lower:
