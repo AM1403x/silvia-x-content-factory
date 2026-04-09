@@ -15,9 +15,28 @@ Use web search to identify:
 
 1. EARNINGS REPORTS (both BMO and AMC)
    - Check Nasdaq, Yahoo Finance, or MarketBeat earnings calendars
-   - Identify all Silvia-caliber names (large-cap, household, market-moving)
+   - Classify every reporting ticker against the tiered Silvia universe defined
+     in triplex/universe/silvia_universe.json. DO NOT use subjective judgment.
+     The tiers are:
+       Tier 1 (auto-cover): the 100 tickers listed in
+         triplex/universe/tier_1_mega_caps.txt. Every earnings print from
+         these names becomes a post. No questions.
+       Tier 2 (conditional): S&P 500 members NOT in Tier 1. Cover only if:
+         - EPS beat/miss >= 5% vs consensus, OR
+         - Revenue beat/miss >= 3% vs consensus, OR
+         - Stock moves >= 3% post-release, OR
+         - Any narrative trigger (CEO change, guidance shock, dividend cut,
+           buyback >$1B, major M&A, activist filing, SEC/DOJ action, credit
+           downgrade, sector read-through for Tier 1)
+       Tier 3 (mostly skip): Non-S&P names. Cover only if on the
+         tier_3_conditional_non_sp.allowlist (COIN, HOOD, MSTR, RBLX, RDDT,
+         TSM, ASML, SE, SHOP, BABA, JD, PDD, MELI, NIO, RIVN, LCID, SMCI,
+         ARM, CRWD, SNOW, NET, DDOG, DJT) — or if the name has a >=8% move
+         PLUS a qualifying catalyst type (recent IPO, major M&A, viral retail
+         story, crypto-adjacent breaking news, Musk endorsement, SEC/DOJ
+         enforcement, needle-moving FDA approval, notable ADR).
    - Include BMO (before market open) reports separately from AMC (after market close)
-   - Filter out tiny/illiquid names unless they're mission-relevant
+   - Never silently skip a Tier 1 name. If a Tier 1 ticker reports, produce a post.
 
 2. MACRO DATA RELEASES
    - BLS schedule: CPI, PPI, NFP, JOLTS, Retail Sales, PCE

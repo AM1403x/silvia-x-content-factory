@@ -1,0 +1,105 @@
+# CFO Silvia — Tier 1 Mega Cap Universe
+# Top 100 US companies by market capitalization as of 2026-04-09
+# Source: companiesmarketcap.com/usa
+# Rule: auto-cover every earnings print and every major event for these tickers
+
+NVDA    NVIDIA
+GOOGL   Alphabet (Class A; covers GOOG Class C too)
+AAPL    Apple
+MSFT    Microsoft
+AMZN    Amazon
+AVGO    Broadcom
+META    Meta Platforms
+TSLA    Tesla
+BRK.B   Berkshire Hathaway (Class B)
+WMT     Walmart
+LLY     Eli Lilly
+JPM     JPMorgan Chase
+XOM     Exxon Mobil
+V       Visa
+JNJ     Johnson & Johnson
+MU      Micron Technology
+COST    Costco
+MA      Mastercard
+NFLX    Netflix
+ORCL    Oracle
+AMD     Advanced Micro Devices
+CVX     Chevron
+BAC     Bank of America
+ABBV    AbbVie
+CAT     Caterpillar
+PG      Procter & Gamble
+KO      Coca-Cola
+HD      Home Depot
+CSCO    Cisco Systems
+GE      General Electric
+LRCX    Lam Research
+PLTR    Palantir Technologies
+AMAT    Applied Materials
+INTC    Intel
+MRK     Merck
+MS      Morgan Stanley
+UNH     UnitedHealth Group
+RTX     RTX Corporation (Raytheon)
+GS      Goldman Sachs
+WFC     Wells Fargo
+GEV     GE Vernova
+PM      Philip Morris International
+KLAC    KLA Corporation
+IBM     IBM
+TMUS    T-Mobile US
+MCD     McDonald's
+C       Citigroup
+AXP     American Express
+PEP     PepsiCo
+VZ      Verizon
+NEE     NextEra Energy
+TXN     Texas Instruments
+AMGN    Amgen
+T       AT&T
+TMO     Thermo Fisher Scientific
+TJX     TJX Companies
+ANET    Arista Networks
+ABT     Abbott Laboratories
+GILD    Gilead Sciences
+DIS     Walt Disney
+BA      Boeing
+ADI     Analog Devices
+SCHW    Charles Schwab
+APH     Amphenol
+DE      Deere & Company (John Deere)
+ISRG    Intuitive Surgical
+CRM     Salesforce
+PFE     Pfizer
+SCCO    Southern Copper
+BLK     BlackRock
+COP     ConocoPhillips
+HON     Honeywell
+UNP     Union Pacific
+WELL    Welltower
+LMT     Lockheed Martin
+GLW     Corning
+UBER    Uber Technologies
+BX      Blackstone Group
+BKNG    Booking Holdings
+LOW     Lowe's Companies
+PANW    Palo Alto Networks
+DHR     Danaher
+QCOM    Qualcomm
+PLD     Prologis
+APP     AppLovin
+NEM     Newmont
+SYK     Stryker
+SPGI    S&P Global
+PH      Parker-Hannifin
+SNDK    SanDisk (spun off from WDC in 2025)
+IBKR    Interactive Brokers
+BMY     Bristol-Myers Squibb
+COF     Capital One
+DELL    Dell Technologies
+PGR     Progressive
+WDC     Western Digital
+HCA     HCA Healthcare
+VRTX    Vertex Pharmaceuticals
+MO      Altria Group
+SO      Southern Company

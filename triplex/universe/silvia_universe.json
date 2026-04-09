@@ -1,0 +1,191 @@
+{
+  "version": "1.0",
+  "updated": "2026-04-09",
+  "source": "companiesmarketcap.com/usa — top 100 US companies by market cap as of April 9, 2026",
+  "_description": "The CFO Silvia content universe. The event detector uses this to decide what to cover. No more subjective judgment on what counts as 'Silvia-caliber.'",
+
+  "tier_1_auto_cover": {
+    "_rule": "Auto-produce a post for every earnings report and every major event from these tickers. No judgment call. If they report, we write.",
+    "_count": 100,
+    "tickers": [
+      "NVDA", "GOOGL", "AAPL", "MSFT", "AMZN", "AVGO", "META", "TSLA", "BRK.B", "WMT",
+      "LLY", "JPM", "XOM", "V", "JNJ", "MU", "COST", "MA", "NFLX", "ORCL",
+      "AMD", "CVX", "BAC", "ABBV", "CAT", "PG", "KO", "HD", "CSCO", "GE",
+      "LRCX", "PLTR", "AMAT", "INTC", "MRK", "MS", "UNH", "RTX", "GS", "WFC",
+      "GEV", "PM", "KLAC", "IBM", "TMUS", "MCD", "C", "AXP", "PEP", "VZ",
+      "NEE", "TXN", "AMGN", "T", "TMO", "TJX", "ANET", "ABT", "GILD", "DIS",
+      "BA", "ADI", "SCHW", "APH", "DE", "ISRG", "CRM", "PFE", "SCCO", "BLK",
+      "COP", "HON", "UNP", "WELL", "LMT", "GLW", "UBER", "BX", "BKNG", "LOW",
+      "PANW", "DHR", "QCOM", "PLD", "APP", "NEM", "SYK", "SPGI", "PH", "SNDK",
+      "IBKR", "BMY", "COF", "DELL", "PGR", "WDC", "HCA", "VRTX", "MO", "SO"
+    ],
+    "_aliases": {
+      "GOOG": "GOOGL",
+      "BRK-B": "BRK.B",
+      "BRK.A": "BRK.B"
+    },
+    "_notes": {
+      "GOOGL": "Alphabet Class A. GOOG (Class C) is the same underlying company; cover as Alphabet.",
+      "BRK.B": "Berkshire Hathaway Class B. BRK.A also exists but B is more commonly referenced.",
+      "GEV": "GE Vernova, spun off from GE in 2024. Now a mega cap.",
+      "SNDK": "SanDisk, spun off from Western Digital in 2025.",
+      "MU": "Micron Technology. High on the list due to AI memory demand. Silvia-worthy."
+    }
+  },
+
+  "tier_2_conditional_sp500": {
+    "_rule": "All other S&P 500 members. Cover ONLY if at least ONE of the conditions below is met. This keeps us from drowning in 500 posts per earnings season.",
+    "_universe": "S&P 500 constituents NOT in tier_1_auto_cover",
+    "_approximate_count": 400,
+    "coverage_triggers": {
+      "eps_beat_or_miss_pct": {
+        "threshold": 5,
+        "description": "Covered if (actual_EPS - consensus) / |consensus| is >= 5% beat or <= -5% miss"
+      },
+      "revenue_beat_or_miss_pct": {
+        "threshold": 3,
+        "description": "Covered if revenue beats/misses consensus by >= 3%"
+      },
+      "stock_move_pct": {
+        "threshold": 3,
+        "description": "Covered if post-earnings stock moves >= 3% in pre-market or after-hours",
+        "measurement_window": "8 hours post-release"
+      },
+      "narrative_triggers": [
+        "ceo_departure_or_appointment",
+        "material_guidance_change",
+        "dividend_cut_or_suspension",
+        "buyback_authorization_1bn_plus",
+        "major_restructuring_or_layoffs_10pct_plus",
+        "merger_or_acquisition_announcement_5bn_plus",
+        "activist_investor_13d_filing",
+        "sec_or_doj_enforcement_action",
+        "fda_major_approval_or_rejection",
+        "antitrust_ruling_against",
+        "credit_rating_downgrade_multiple_notches",
+        "sector_read_through_for_tier_1"
+      ]
+    }
+  },
+
+  "tier_3_conditional_non_sp": {
+    "_rule": "Non-S&P 500 names. Cover only for extraordinary reasons. Default is SKIP. Silvia is not a meme-stock account.",
+    "coverage_triggers": {
+      "stock_move_pct": {
+        "threshold": 8,
+        "description": "Non-S&P names need a much bigger move than Tier 2 to justify attention. 8%+ intraday on a concrete catalyst, not on momentum."
+      },
+      "required_catalyst_types": [
+        "recent_ipo_first_or_second_earnings",
+        "major_ma_target_or_acquirer_5bn_plus",
+        "viral_retail_story_rddt_or_gme_style",
+        "crypto_adjacent_major_news_coin_mstr_hood_style",
+        "musk_or_famous_endorsement_public_statement",
+        "sec_doj_major_enforcement_action",
+        "fda_approval_biotech_small_cap_needle_mover",
+        "russell_1000_member_with_tier_1_sector_read_through",
+        "notable_adr_tsm_asml_se_mercadolibre"
+      ],
+      "allowlist_recurring_tier_3": {
+        "_description": "Non-S&P names we will cover for earnings or major events even without a breakout catalyst. These are 'almost Tier 1' — high-profile enough that Silvia's audience expects coverage.",
+        "tickers": [
+          "COIN",
+          "HOOD",
+          "MSTR",
+          "RBLX",
+          "RDDT",
+          "TSM",
+          "ASML",
+          "SE",
+          "SHOP",
+          "BABA",
+          "JD",
+          "PDD",
+          "MELI",
+          "NIO",
+          "RIVN",
+          "LCID",
+          "SMCI",
+          "ARM",
+          "CRWD",
+          "SNOW",
+          "NET",
+          "DDOG",
+          "DJT"
+        ],
+        "_rationale": "These names are either (a) household names to @CFOSilvia's retail-leaning audience or (b) volatile enough that ignoring a big move would miss the story. Covered with the same rigor as Tier 2: earnings trigger auto-coverage, other events need a >3% move or narrative trigger."
+      }
+    },
+    "excluded_by_default": {
+      "market_cap_usd_bn_minimum": 5,
+      "types": [
+        "OTC_pink_sheets",
+        "SPAC_prior_to_merger",
+        "foreign_ADR_not_in_allowlist",
+        "bulletin_board_stocks",
+        "reverse_merger_shell_companies"
+      ]
+    }
+  },
+
+  "event_type_rules": {
+    "earnings": {
+      "tier_1": "auto-cover every Q print",
+      "tier_2": "cover if EPS beat/miss 5%+, revenue beat/miss 3%+, stock move 3%+, or any narrative trigger",
+      "tier_3_allowlist": "cover every Q print",
+      "tier_3_other": "cover only if stock move 8%+ with a qualifying catalyst"
+    },
+    "macro_releases": {
+      "always_cover": [
+        "CPI",
+        "PPI",
+        "NFP",
+        "PCE",
+        "GDP",
+        "FOMC_meetings",
+        "FOMC_minutes",
+        "JOLTS",
+        "Retail_Sales"
+      ],
+      "conditional": [
+        "Consumer_Confidence",
+        "ISM_Manufacturing",
+        "ISM_Services",
+        "Housing_Starts",
+        "Existing_Home_Sales",
+        "New_Home_Sales",
+        "Durable_Goods"
+      ],
+      "conditional_rule": "Cover if the print deviates from consensus by more than 10% on the headline figure, OR if it is accompanied by a major market reaction (2%+ index move)."
+    },
+    "fed_speakers": {
+      "always_cover": [
+        "Chair_Powell",
+        "Vice_Chair",
+        "Any_FOMC_voter_with_market_moving_quote"
+      ],
+      "conditional": "Regional Fed presidents only if they explicitly signal a policy pivot or dissent from the last FOMC statement."
+    },
+    "geopolitical_or_surprise": {
+      "rule": "Cover if the event moves any major index >1% or oil/gold/DXY >3% intraday. Also cover if it names a Tier 1 sector specifically (energy war, tech tariffs, bank regulation).",
+      "recent_examples": [
+        "2026-04-08_iran_ceasefire_announcement",
+        "2026-04-09_iran_ceasefire_cracking"
+      ]
+    }
+  },
+
+  "daily_defaults": {
+    "always_fires": [
+      "daily_wrap"
+    ],
+    "daily_wrap_time_et": "16:30",
+    "daily_wrap_content": "session summary, indices, commodities, top earnings, key stories, tomorrow's preview"
+  },
+
+  "operator_notes": {
+    "review_cadence": "Refresh this file quarterly or after a major index rebalance. Track S&P 500 additions/removals from the S&P website.",
+    "edit_rule": "Add to tier_1_auto_cover only if a name has crossed $100B market cap AND has the kind of retail recognition that warrants always-cover. Do not auto-add S&P additions.",
+    "last_review": "2026-04-09"
+  }
+}
